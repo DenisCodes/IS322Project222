@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="initial: commit">
+      <change afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Kanban1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JSONapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Page1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Page3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageTabs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1618090869167</updated>
       <workItem from="1618090870741" duration="7123000" />
+      <workItem from="1618156286824" duration="6873000" />
     </task>
     <task id="LOCAL-00001" summary="initial: commit">
       <created>1618094165885</created>
@@ -91,6 +99,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial: commit" />

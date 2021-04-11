@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "react": "^16.8.5",
+    "react-dnd": "^7.0.2",
+    "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8"
   },
@@ -22,5 +24,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@lourenci/react-kanban": "^2.1.0",
+    "immutability-helper": "^3.1.1",
+    "uuid": "^8.3.2"
+  }
 }

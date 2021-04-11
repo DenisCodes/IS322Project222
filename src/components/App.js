@@ -1,13 +1,13 @@
 import React from 'react';
 
 import PageTabs from './PageTabs';
-import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
+import Kanban from "./Kanban";
 
 class App extends React.Component {
   state = {
-    view: 'page1'
+    view: 'kanban'
   }
   
   onViewChange(view) {
@@ -29,9 +29,9 @@ class App extends React.Component {
     const { view } = this.state;
 
     switch (view) {
-      case 'page1':
+      case 'kanban':
         return (this.wrapPage(
-          <Page1 />
+          <Kanban />
         ));
       case 'page2':
         return (this.wrapPage(
