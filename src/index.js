@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import openDataBase from './JSONapi';
+import openDataBase from './components/JSONapi';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
