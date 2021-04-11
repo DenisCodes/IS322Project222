@@ -1,5 +1,5 @@
 import React  from 'react';
-import TaskIem from './TaskItem';
+import TaskItem from './TaskItem';
 class TaskList extends React.Component {
 
     markDone = (task) => {
@@ -8,6 +8,18 @@ class TaskList extends React.Component {
         taskList.splice(taskIndex, 1);
         console.log(this.props);
         this.props.onUpdateTaskList(taskList);
+    }
+
+    render(){
+        const taskItems = this.props.tasks.map(task => {
+            return <TaskItem task={task} key={task.id} markDone={this.markDone} />
+        });
+
+        return (
+            <ul className="task-list list-group">
+                { taskItems }
+            </ul>
+        )
     }
 }
 export default TaskList;

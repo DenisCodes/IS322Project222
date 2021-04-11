@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="refactor : moved around files">
-      <change afterPath="$PROJECT_DIR$/src/AddTask.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TaskItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TaskList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tasks.js" afterDir="false" />
+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : added add tasks and task list">
+      <change afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TaskItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TaskList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/JSONapi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TaskItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TaskList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Tasks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +46,7 @@
       <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src" />
       <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src\components" />
     </key>
   </component>
@@ -74,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1618090869167</updated>
       <workItem from="1618090870741" duration="8492000" />
-      <workItem from="1618159139101" duration="3333000" />
+      <workItem from="1618159139101" duration="5822000" />
     </task>
     <task id="LOCAL-00001" summary="initial: commit">
       <created>1618094165885</created>
@@ -97,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618159595865</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="implemented : added add tasks and task list">
+      <created>1618162537272</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618162537272</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +128,7 @@
     <MESSAGE value="initial: commit" />
     <MESSAGE value="implementation : database connection" />
     <MESSAGE value="refactor : moved around files" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor : moved around files" />
+    <MESSAGE value="implemented : added add tasks and task list" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented : added add tasks and task list" />
   </component>
 </project>

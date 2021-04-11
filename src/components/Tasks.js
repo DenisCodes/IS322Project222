@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './App';
 import axios from 'axios';
+import TaskList from './TaskList';
+import AddTask from './AddTask';
 
 ReactDOM.render(<App />, document.querySelector('#root'));
 
-class Tasks extends React.Component{
+class App extends React.Component{
 
     state = {
         tasks: [],
         errorMessage: ''
     }
-
-
 
     componentDidMount(){
         this.getData();
@@ -20,10 +20,10 @@ class Tasks extends React.Component{
 
     getData() {
         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
-            .then(responce => {
+            .then(response => {
                 this.setState({tasks: response.data});
-            }).catcch(error => {
-                this.setState({errorMEssage: error.message});
+            }).catch(error => {
+                this.setState({errorMessage: error.message});
         });
     }
 
@@ -31,7 +31,7 @@ class Tasks extends React.Component{
         let tasks = this.state.tasks;
         tasks.push({
             title: taskName,
-            id: this.state.tsks.length + 1,
+            id: this.state.tasks.length + 1,
             type: 'task',
             coloumn: 'todo'
         });
@@ -43,4 +43,14 @@ class Tasks extends React.Component{
         this.setState({tasks: newTaskList});
     }
 
+    render(){
+        return(
+            <div calssName='container'>
+                <AddTask onSubmit={this.onAddTask} />
+                <TaskList task={this.state.tasks} onUpdateTaskList={this.onUpdateTaskList} />
+            </div>
+        );
+    }
 }
+
+export default App;
