@@ -2,23 +2,10 @@ import React from "react";
 import { DragDropContext, DropTarget, DragSource } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
-
-const tasks = [
-    { _id: 1, title: "First Task",type: "Debug", status: "new" },
-    { _id: 2, title: "Second Task",type: "Debug", status: "new" },
-    { _id: 3, title: "Third Task",type: "Debug", status: "ip" },
-    { _id: 4, title: "Fourth Task",type: "Debug", status: "new" },
-    { _id: 5, title: "Fifth Task",type: "Debug", status: "new" },
-    { _id: 6, title: "Sixth Task",type: "Debug", status: "ip" },
-    { _id: 7, title: "Seventh Task",type: "Debug", status: "review" },
-    { _id: 8, title: "Eighth Task",type: "Debug", status: "review" },
-    { _id: 9, title: "Ninth Task",type: "Debug", status: "done" },
-    { _id: 10, title: "Tenth Task",type: "Debug", status: "done" }
-];
+import axios from 'axios';
 
 const channels = [ "new", "ip", "review", "done"];
 const labelsMap = {
-
     new: "To Do",
     ip: "In Progress",
     review: "Review",
@@ -58,8 +45,23 @@ class Kanban extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks
+            tasks: [],
+            errorMessage: ''
         };
+    }
+    componentDidMount(){
+        this.getDataBase();
+    }
+    getDataBase() {
+        axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
+            .then(response => {
+                console.log(response.data);
+                this.setState({tasks: response.data});
+                console.log(this.state);
+            }).catch(error => {
+            console.log(error);
+            this.setState({errorMessage: error.message});
+        });
     }
     update = (id, status) => {
         const { tasks } = this.state;

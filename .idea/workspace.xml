@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="kanban board">
+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : restructure of how backend database works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="KanbanPage" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,6 +44,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src" />
+      <recent name="C:\Users\mandd\WebstormProjects\ReactConditionalRendering\src\components" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -60,6 +63,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -71,8 +76,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618090869167</updated>
-      <workItem from="1618090870741" duration="7123000" />
-      <workItem from="1618156286824" duration="9912000" />
+      <workItem from="1618090870741" duration="8492000" />
+      <workItem from="1618159139101" duration="5822000" />
+      <workItem from="1618257706146" duration="5996000" />
     </task>
     <task id="LOCAL-00001" summary="initial: commit">
       <created>1618094165885</created>
@@ -81,14 +87,28 @@
       <option name="project" value="LOCAL" />
       <updated>1618094165885</updated>
     </task>
-    <task id="LOCAL-00002" summary="kanban board">
-      <created>1618163629451</created>
+    <task id="LOCAL-00002" summary="implementation : database connection">
+      <created>1618100997795</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1618163629451</updated>
+      <updated>1618100997795</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactor : moved around files">
+      <created>1618159595865</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618159595865</updated>
+    </task>
+    <task id="LOCAL-00004" summary="implemented : added add tasks and task list">
+      <created>1618162537272</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618162537272</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,7 +128,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial: commit" />
-    <MESSAGE value="kanban board" />
-    <option name="LAST_COMMIT_MESSAGE" value="kanban board" />
+    <MESSAGE value="implementation : database connection" />
+    <MESSAGE value="refactor : moved around files" />
+    <MESSAGE value="implemented : added add tasks and task list" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented : added add tasks and task list" />
   </component>
 </project>
