@@ -2,10 +2,10 @@ import React from 'react';
 
 
 
+class AddTask extends React.Component {
+     state = { newTask: ""}
 
-class Page3 extends React.Component {
-
-   addNewTask (newTask) {
+  addNewTask = (newTask)=> {
        console.log(newTask);
 
    }
@@ -19,7 +19,12 @@ class Page3 extends React.Component {
         }
         this.addNewTask(newTask);
         e.preventDefault();
+
+        this.props.onSubmit(this.state.newTask)
+        this.setState({newTask: ""})
+
     }
+
     render(){
 
        return (
@@ -51,5 +56,5 @@ class Page3 extends React.Component {
 }
 
 
-export default Page3;
+export default AddTask;
 

@@ -29,8 +29,8 @@ class PageTabs extends React.Component {
           </a>
         </li>
         <li className='nav-item'>
-          <a className={this.isActiveTab('page3')}
-             onClick={(e) => this.onTabClick(e, 'page3')}>
+          <a className={this.isActiveTab('addtask')}
+             onClick={(e) => this.onTabClick(e, 'addtask')}>
             Add Task
           </a>
         </li>
