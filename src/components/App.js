@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PageTabs from './PageTabs';
-import Page2 from './Page2';
+import Page2 from './Page2Test';
 import Page3 from './Page3';
 import Kanban from "./Kanban";
 

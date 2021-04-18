@@ -4,12 +4,21 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "react": "^16.8.5",
+    "react-art": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.8.5",
+    "react-list": "^0.8.16",
+    "react-native": "^0.64.0",
+    "react-native-cli": "^2.0.1",
     "react-scripts": "2.1.8",
     "react-table": "^7.6.3"
+  },
+  "peerDependencies": {
+    "react-art": "^17.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -29,6 +38,7 @@
   "devDependencies": {
     "@lourenci/react-kanban": "^2.1.0",
     "immutability-helper": "^3.1.1",
+    "react-router-dom": "^5.2.0",
     "uuid": "^8.3.2"
   }
 }
