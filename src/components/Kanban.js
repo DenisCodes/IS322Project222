@@ -3,6 +3,7 @@ import { DragDropContext, DropTarget, DragSource } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
 import axios from 'axios';
+import AddTask from "./AddTask";
 
 const channels = [ "new", "ip", "review", "done"];
 const labelsMap = {
@@ -63,6 +64,19 @@ class Kanban extends React.Component {
             this.setState({errorMessage: error.message});
         });
     }
+
+    onAddTask = (taskTitle, taskType) => {
+
+        let tasks = this.state.tasks;
+        tasks.push({
+            title: taskTitle,
+            id: this.state.tasks.length +1,
+            type: taskType,
+            column: 'todo'
+
+        });
+
+}
     update = (id, status) => {
         const { tasks } = this.state;
         const task = tasks.find(task => task._id === id);
