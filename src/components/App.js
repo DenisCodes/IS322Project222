@@ -2,8 +2,9 @@ import React from 'react';
 
 import PageTabs from './PageTabs';
 import Page2 from './Page2Test';
-import Page3 from './Page3';
+import Page3 from './AddTask';
 import Kanban from "./Kanban";
+import AddTask from "./AddTask";
 
 class App extends React.Component {
   state = {
@@ -37,9 +38,9 @@ class App extends React.Component {
         return (this.wrapPage(
           <Page2 />
         ));
-      case 'page3':
+      case 'addtask':
         return (this.wrapPage(
-          <Page3 />
+          <AddTask />
         ));
       default:
         return (this.wrapPage(
