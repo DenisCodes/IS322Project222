@@ -20,12 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="Use Page2Test.js">
-      <change afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Page2Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +105,8 @@
       <workItem from="1618159139101" duration="5822000" />
       <workItem from="1618257706146" duration="5996000" />
       <workItem from="1618461997560" duration="26293000" />
-      <workItem from="1618721664680" duration="2713000" />
+      <workItem from="1618721664680" duration="9334000" />
+      <workItem from="1618851098735" duration="5387000" />
     </task>
     <task id="LOCAL-00001" summary="initial: commit">
       <created>1618094165885</created>
@@ -139,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618162537272</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Use Page2Test.js">
+      <created>1618724382936</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618724382936</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +195,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1882" height="278" key="GridCell.Tab.0.right/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618721592894" />
+    <state x="0" y="0" key="Vcs.Push.Dialog.v2" timestamp="1618724422947">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="0" y="0" key="Vcs.Push.Dialog.v2/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618724422947" />
     <state x="-1828" y="179" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1618692662477">
       <screen x="-1920" y="87" width="1920" height="1050" />
     </state>

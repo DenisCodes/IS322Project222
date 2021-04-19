@@ -2,23 +2,38 @@ import React from "react";
 import update from "immutability-helper";
 import axios from 'axios';
 
+let newList = [];
+let finalList = [];
+function taskSetup(tasks, index){
+    console.log(finalList)
+    finalList.push(tasks)
+}
 const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
 
     const sortedItems = React.useMemo(() => {
         let sortableItems = [...items];
-        if (sortConfig !== null) {
-            sortableItems.sort((a, b) => {
-                if (a[sortConfig.key] < b[sortConfig.key]) {
-                    return sortConfig.direction === 'ascending' ? -1 : 1;
-                }
-                if (a[sortConfig.key] > b[sortConfig.key]) {
-                    return sortConfig.direction === 'ascending' ? 1 : -1;
-                }
-                return 0;
-            });
+        finalList = [];
+        newList.forEach(taskSetup)
+        console.log(newList)
+        for(var singleTask of finalList){
+            console.log(finalList)
+            if (sortConfig !== null) {
+                finalList.sort((a, b) => {
+                    if (a[sortConfig.key] < b[sortConfig.key]) {
+                        return sortConfig.direction === 'ascending' ? -1 : 1;
+                    }
+                    if (a[sortConfig.key] > b[sortConfig.key]) {
+                        return sortConfig.direction === 'ascending' ? 1 : -1;
+                    }
+                    sortableItems = finalList;
+                });
+            }
         }
+
         return sortableItems;
+
+
     }, [items, sortConfig]);
 
     const requestSort = (key) => {
@@ -28,6 +43,7 @@ const useSortableData = (items, config = null) => {
             sortConfig.key === key &&
             sortConfig.direction === 'ascending'
         ) {
+            console.log(sortConfig.key)
             direction = 'descending';
         }
         setSortConfig({ key, direction });
@@ -38,13 +54,26 @@ const useSortableData = (items, config = null) => {
 
 const ProductTable = (props) => {
     const { items, requestSort, sortConfig } = useSortableData(props.tasks);
+
+    try{
+        newList = [];
+        for(var task of items){
+            for(var singleTask of task){
+                newList.push(singleTask)
+                console.log(newList)
+            }
+        }
+    }catch{
+            console.log(newList)
+        }
+
     const getClassNamesFor = (name) => {
         if (!sortConfig) {
             return;
         }
         return sortConfig.key === name ? sortConfig.direction : undefined;
     };
-    console.log(items)
+    console.log(finalList)
     return (
         <table>
             <caption>Products</caption>
@@ -90,18 +119,14 @@ const ProductTable = (props) => {
             </thead>
             <tbody>
             {
-
-                items.map((task, index ) => (
-                    task.map((singleTask,i) => (
-                        <tr>
-                            <td>{singleTask._id}</td>
-                            <td>{singleTask.title}</td>
-                            <td>{singleTask.type}</td>
-                            <td>{singleTask.status}</td>
-                        </tr>
-                        )
-
-                    )))
+                finalList.map((task, index ) => (
+                    <tr>
+                        <td>{task._id}</td>
+                        <td>{task.title}</td>
+                        <td>{task.type}</td>
+                        <td>{task.status}</td>
+                    </tr>
+                ))
             }
 
             </tbody>
