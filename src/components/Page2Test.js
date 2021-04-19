@@ -6,7 +6,7 @@ import addTask from './AddTask';
 let newList = [];
 let finalList = [];
 function taskSetup(tasks, index){
-
+    console.log(finalList)
     finalList.push(tasks)
 }
 const useSortableData = (items, config = null) => {
@@ -15,10 +15,11 @@ const useSortableData = (items, config = null) => {
     const sortedItems = React.useMemo(() => {
         let sortableItems = [...items];
         finalList = [];
-
         newList.forEach(taskSetup)
-
+        console.log(newList)
         for(var singleTask of finalList){
+            console.log(finalList)
+            if (sortConfig !== null) {
                 finalList.sort((a, b) => {
                     if (a[sortConfig.key] < b[sortConfig.key]) {
                         return sortConfig.direction === 'ascending' ? -1 : 1;
@@ -28,7 +29,7 @@ const useSortableData = (items, config = null) => {
                     }
                     sortableItems = finalList;
                 });
-
+            }
         }
 
         return sortableItems;
@@ -43,7 +44,7 @@ const useSortableData = (items, config = null) => {
             sortConfig.key === key &&
             sortConfig.direction === 'ascending'
         ) {
-
+            console.log(sortConfig.key)
             direction = 'descending';
         }
         setSortConfig({ key, direction });
@@ -54,21 +55,21 @@ const useSortableData = (items, config = null) => {
 
 const ProductTable = (props) => {
     const { items, requestSort, sortConfig } = useSortableData(props.tasks);
-        newList = [];
 
     try{
+        newList = [];
         for(var task of items){
             for(var singleTask of task){
                 newList.push(singleTask)
+                console.log(newList)
             }
         }
     }catch{
-        for(var item of items){
-            newList.push(item);
+        for(var task of items){
+            newList.push(task)
+            console.log(newList)
         }
-
-    }
-
+        }
 
     const getClassNamesFor = (name) => {
         if (!sortConfig) {
@@ -76,7 +77,7 @@ const ProductTable = (props) => {
         }
         return sortConfig.key === name ? sortConfig.direction : undefined;
     };
-
+    console.log(finalList)
     return (
         <table>
             <caption>Products</caption>
@@ -153,8 +154,11 @@ export default class Page2Test extends React.Component {
     getDataBase() {
         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
             .then(response => {
+                console.log(response.data);
                 this.setState({tasks: response.data});
+                console.log(this.state);
             }).catch(error => {
+            console.log(error);
             this.setState({errorMessage: error.message});
         });
     }
