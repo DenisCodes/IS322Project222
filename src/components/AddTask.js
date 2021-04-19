@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-
+import Kanban from "./Kanban";
 
 
 class AddTask extends React.Component {
