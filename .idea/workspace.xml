@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="adding task">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="fixed unkown error">
+      <change afterPath="$PROJECT_DIR$/src/components/Dbase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Page2Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +45,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BasicWebPack" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -85,6 +88,9 @@
       <workItem from="1618090870741" duration="8492000" />
       <workItem from="1618159139101" duration="5822000" />
       <workItem from="1618257706146" duration="5996000" />
+      <workItem from="1618887236655" duration="341000" />
+      <workItem from="1618943850203" duration="9000" />
+      <workItem from="1618946026149" duration="8364000" />
     </task>
     <task id="LOCAL-00001" summary="initial: commit">
       <created>1618094165885</created>
@@ -128,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618865679828</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed unkown error">
+      <created>1618871425038</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618871425038</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +165,7 @@
     <MESSAGE value="refactor : moved around files" />
     <MESSAGE value="implemented : added add tasks and task list" />
     <MESSAGE value="adding task" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding task" />
+    <MESSAGE value="fixed unkown error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed unkown error" />
   </component>
 </project>
