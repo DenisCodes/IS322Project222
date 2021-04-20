@@ -2,6 +2,7 @@ import React from "react";
 import update from "immutability-helper";
 import axios from 'axios';
 import App from "./App";
+import Dbase from './Dbase.js';
 
 
 
@@ -19,17 +20,19 @@ class Page2 extends React.Component {
     this.getDataBase();
   }
 
-  getDataBase() {
-    axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
-        .then(response => {
-          console.log(response.data);
-          this.setState({tasks: response.data});
-          console.log(this.state);
-        }).catch(error => {
-      console.log(error);
-      this.setState({errorMessage: error.message});
-    });
-  }
+    getDataBase() {
+        axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
+            .then(response => {
+                console.log(response.data);
+                console.log(window.tasks);
+                Dbase.checkAdd(response.data);
+                this.setState({tasks: window.tasks});
+                console.log(this.state);
+            }).catch(error => {
+            console.log(error);
+            this.setState({errorMessage: error.message});
+        });
+    }
 
   update = (id, status) => {
     const { tasks } = this.state;

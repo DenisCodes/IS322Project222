@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import Kanban from "./Kanban";
+import Dbase from './Dbase.js';
+import PageTabs from './PageTabs';
 
 
 class AddTask extends React.Component {
@@ -18,6 +20,7 @@ class AddTask extends React.Component {
             type : this.refs.type.value
         }
         this.addNewTask(newTask);
+        Dbase.addNewTask(newTask);
         this.props.onSubmit(this.state.addNewTask(newTask));
         e.preventDefault();
 
@@ -42,6 +45,7 @@ class AddTask extends React.Component {
                         <option value="debug">Debug</option>
                         <option value="feature">Feature</option>
                     </select>
+                    //<input type="submit" value="Add Task" className="btn btn-primary"/>
                     <input type="submit" value="Add Task" className="btn btn-primary"/>
                 </form>
 

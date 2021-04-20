@@ -1,6 +1,7 @@
 import React from "react";
 import update from "immutability-helper";
 import axios from 'axios';
+import Dbase from './Dbase.js';
 import addTask from './AddTask';
 
 let newList = [];
@@ -155,7 +156,9 @@ export default class Page2Test extends React.Component {
         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
             .then(response => {
                 console.log(response.data);
-                this.setState({tasks: response.data});
+                console.log(window.tasks);
+                Dbase.checkAdd(response.data);
+                this.setState({tasks: window.tasks});
                 console.log(this.state);
             }).catch(error => {
             console.log(error);

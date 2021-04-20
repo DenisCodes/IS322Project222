@@ -3,8 +3,11 @@ import { DragDropContext, DropTarget, DragSource } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
 import axios from 'axios';
+import Dbase from './Dbase.js';
 import AddTask from "./AddTask";
 
+const tasks = window.task;
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const channels = [ "new", "ip", "review", "done"];
 const labelsMap = {
     new: "To Do",
@@ -52,12 +55,36 @@ class Kanban extends React.Component {
     }
     componentDidMount(){
         this.getDataBase();
+        //this.getState();
     }
+
+    getState(){
+        this.setState({tasks: window.tasks});
+    }
+/*
+    getDataBase() {
+        Dbase.setData()
+        //Dbase.data
+        console.log(window.tasks);
+        for(var task of window.tasks){
+            console.log(task);
+        }
+        console.log(Dbase.data);
+        console.log(Dbase.getDatabase);
+        //await delay(500);
+        console.log(tasks);
+        console.log(this.state.tasks);
+        console.log(this.state);
+    }
+
+*/
     getDataBase() {
         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
             .then(response => {
                 console.log(response.data);
-                this.setState({tasks: response.data});
+                console.log(window.tasks);
+                Dbase.checkAdd(response.data);
+                this.setState({tasks: window.tasks});
                 console.log(this.state);
             }).catch(error => {
             console.log(error);
