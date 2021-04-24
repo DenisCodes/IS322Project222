@@ -15,6 +15,7 @@ class AddTask extends React.Component {
     // probably I can do it
 
     onSubmit = (e) => {
+        console.log('onSubmit Activated')
         const newTask ={
             title : this.refs.title.value,
             type : this.refs.type.value
@@ -45,7 +46,6 @@ class AddTask extends React.Component {
                         <option value="debug">Debug</option>
                         <option value="feature">Feature</option>
                     </select>
-                    //<input type="submit" value="Add Task" className="btn btn-primary"/>
                     <input type="submit" value="Add Task" className="btn btn-primary"/>
                 </form>
 
