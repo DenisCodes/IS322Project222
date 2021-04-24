@@ -6,6 +6,7 @@ import addTask from './AddTask';
 
 let newList = [];
 let finalList = [];
+let initialState = [];
 function taskSetup(tasks, index){
     console.log(finalList)
     finalList.push(tasks)
@@ -81,7 +82,7 @@ const ProductTable = (props) => {
     console.log(finalList)
     return (
         <table>
-            <caption>Products</caption>
+            <caption>Click one of the above buttons to display tasks!</caption>
             <thead>
             <tr>
                 <th>
@@ -155,6 +156,7 @@ export default class Page2Test extends React.Component {
     getDataBase() {
         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
             .then(response => {
+
                 console.log(response.data);
                 console.log(window.tasks);
                 Dbase.checkAdd(response.data);
