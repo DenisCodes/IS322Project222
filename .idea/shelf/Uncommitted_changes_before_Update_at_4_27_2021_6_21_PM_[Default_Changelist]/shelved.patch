@@ -1,0 +1,1006 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM__Default_Changelist_.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]" date="1618871113834" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/19/2021 6:25 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]" date="1618762140939" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/18/2021 12:08 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]/shelved.patch	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,234 +0,0 @@
+-Index: src/components/Page2Test.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from \"react\";\r\nimport update from \"immutability-helper\";\r\nimport axios from 'axios';\r\n\r\nlet newList = [];\r\nlet finalList = [];\r\nfunction taskSetup(tasks, index){\r\n    console.log(finalList)\r\n    finalList.push(tasks)\r\n}\r\nconst useSortableData = (items, config = null) => {\r\n    const [sortConfig, setSortConfig] = React.useState(config);\r\n\r\n    const sortedItems = React.useMemo(() => {\r\n        let sortableItems = [...items];\r\n        finalList = [];\r\n        newList.forEach(taskSetup)\r\n        console.log(newList)\r\n        for(var singleTask of finalList){\r\n            console.log(finalList)\r\n            if (sortConfig !== null) {\r\n                finalList.sort((a, b) => {\r\n                    if (a[sortConfig.key] < b[sortConfig.key]) {\r\n                        return sortConfig.direction === 'ascending' ? -1 : 1;\r\n                    }\r\n                    if (a[sortConfig.key] > b[sortConfig.key]) {\r\n                        return sortConfig.direction === 'ascending' ? 1 : -1;\r\n                    }\r\n                    sortableItems = finalList;\r\n                });\r\n            }\r\n        }\r\n\r\n        return sortableItems;\r\n\r\n\r\n    }, [items, sortConfig]);\r\n\r\n    const requestSort = (key) => {\r\n        let direction = 'ascending';\r\n        if (\r\n            sortConfig &&\r\n            sortConfig.key === key &&\r\n            sortConfig.direction === 'ascending'\r\n        ) {\r\n            console.log(sortConfig.key)\r\n            direction = 'descending';\r\n        }\r\n        setSortConfig({ key, direction });\r\n    };\r\n\r\n    return { items: sortedItems, requestSort, sortConfig };\r\n};\r\n\r\nconst ProductTable = (props) => {\r\n    const { items, requestSort, sortConfig } = useSortableData(props.tasks);\r\n\r\n    try{\r\n        newList = [];\r\n        for(var task of items){\r\n            for(var singleTask of task){\r\n                newList.push(singleTask)\r\n                console.log(newList)\r\n            }\r\n        }\r\n    }catch{\r\n            console.log(newList)\r\n        }\r\n\r\n    const getClassNamesFor = (name) => {\r\n        if (!sortConfig) {\r\n            return;\r\n        }\r\n        return sortConfig.key === name ? sortConfig.direction : undefined;\r\n    };\r\n    console.log(finalList)\r\n    return (\r\n        <table>\r\n            <caption>Products</caption>\r\n            <thead>\r\n            <tr>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('_id')}\r\n                        className={getClassNamesFor('_id')}\r\n                    >\r\n                        ID\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('title')}\r\n                        className={getClassNamesFor('title')}\r\n                    >\r\n                        Title\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('type')}\r\n                        className={getClassNamesFor('type')}\r\n                    >\r\n                        Type\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('status')}\r\n                        className={getClassNamesFor('status')}\r\n                    >\r\n                        Status\r\n                    </button>\r\n                </th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            {\r\n                finalList.map((task, index ) => (\r\n                    <tr>\r\n                        <td>{task._id}</td>\r\n                        <td>{task.title}</td>\r\n                        <td>{task.type}</td>\r\n                        <td>{task.status}</td>\r\n                    </tr>\r\n                ))\r\n            }\r\n\r\n            </tbody>\r\n        </table>\r\n    );\r\n};\r\n\r\nexport default class Page2Test extends React.Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            tasks: [],\r\n            errorMessage: ''\r\n        };\r\n    }\r\n\r\n    componentDidMount(){\r\n        this.getDataBase();\r\n    }\r\n\r\n    getDataBase() {\r\n        axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')\r\n            .then(response => {\r\n                console.log(response.data);\r\n                this.setState({tasks: response.data});\r\n                console.log(this.state);\r\n            }).catch(error => {\r\n            console.log(error);\r\n            this.setState({errorMessage: error.message});\r\n        });\r\n    }\r\n\r\n    update = (id, status) => {\r\n        const { tasks } = this.state;\r\n        const task = tasks.find(task => task._id === id);\r\n        task.status = status;\r\n        const taskIndex = tasks.indexOf(task);\r\n        const newTasks = update(tasks, {\r\n            [taskIndex]: { $set: task }\r\n        });\r\n        this.setState({ tasks: newTasks });\r\n    };\r\n    render(){\r\n        return (\r\n            <div className=\"App\">\r\n                <ProductTable\r\n                    tasks={[\r\n                        this.state.tasks\r\n                    ]}\r\n                />\r\n            </div>\r\n        );\r\n    }\r\n\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/Page2Test.js b/src/components/Page2Test.js
+---- a/src/components/Page2Test.js	(revision 7e4d68090d07541ef151cb06b6ff3981ba5e007b)
+-+++ b/src/components/Page2Test.js	(date 1618859657423)
+-@@ -5,7 +5,7 @@
+- let newList = [];
+- let finalList = [];
+- function taskSetup(tasks, index){
+--    console.log(finalList)
+-+    //console.log(finalList)
+-     finalList.push(tasks)
+- }
+- const useSortableData = (items, config = null) => {
+-@@ -15,17 +15,19 @@
+-         let sortableItems = [...items];
+-         finalList = [];
+-         newList.forEach(taskSetup)
+--        console.log(newList)
+-+        //console.log(newList)
+-         for(var singleTask of finalList){
+-             console.log(finalList)
+-             if (sortConfig !== null) {
+-                 finalList.sort((a, b) => {
+-+                    console.log(finalList)
+-                     if (a[sortConfig.key] < b[sortConfig.key]) {
+-                         return sortConfig.direction === 'ascending' ? -1 : 1;
+-                     }
+-                     if (a[sortConfig.key] > b[sortConfig.key]) {
+-                         return sortConfig.direction === 'ascending' ? 1 : -1;
+-                     }
+-+                    console.log(finalList)
+-                     sortableItems = finalList;
+-                 });
+-             }
+-@@ -38,11 +40,7 @@
+- 
+-     const requestSort = (key) => {
+-         let direction = 'ascending';
+--        if (
+--            sortConfig &&
+--            sortConfig.key === key &&
+--            sortConfig.direction === 'ascending'
+--        ) {
+-+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+-             console.log(sortConfig.key)
+-             direction = 'descending';
+-         }
+-@@ -60,11 +58,12 @@
+-         for(var task of items){
+-             for(var singleTask of task){
+-                 newList.push(singleTask)
+--                console.log(newList)
+-+                //console.log(newList)
+-             }
+-         }
+-     }catch{
+-             console.log(newList)
+-+            console.log(finalList)
+-         }
+- 
+-     const getClassNamesFor = (name) => {
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"Use Page2Test.js\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Page2Test.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Page2Test.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"TERMINAL_CUSTOM_COMMANDS_GOT_IT\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" BundledDictionaries=\"0\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" Dictionaries=\"0\" CorrectionsLimit=\"5\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n      <workItem from=\"1618461997560\" duration=\"26293000\" />\r\n      <workItem from=\"1618721664680\" duration=\"9334000\" />\r\n      <workItem from=\"1618851098735\" duration=\"5387000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Use Page2Test.js\">\r\n      <created>1618724382936</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618724382936</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <MESSAGE value=\"Use Page2Test.js\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Use Page2Test.js\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"718\" y=\"327\" key=\"#com.intellij.fileTypes.FileTypeChooser\" timestamp=\"1618632306898\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"718\" y=\"327\" key=\"#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050\" timestamp=\"1618632306898\" />\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl\" timestamp=\"1618449674302\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"740\" y=\"275\" key=\"FileChooserDialogImpl/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618449674302\" />\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1618721592894\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.bottom/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618721592894\" />\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.center\" timestamp=\"1618721592893\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.center/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618721592893\" />\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.left\" timestamp=\"1618721592893\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.left/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618721592893\" />\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.right\" timestamp=\"1618721592894\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state width=\"1882\" height=\"278\" key=\"GridCell.Tab.0.right/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618721592894\" />\r\n    <state x=\"0\" y=\"0\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1618724422947\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"0\" y=\"0\" key=\"Vcs.Push.Dialog.v2/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618724422947\" />\r\n    <state x=\"-1828\" y=\"179\" width=\"1736\" height=\"866\" key=\"com.intellij.history.integration.ui.views.FileHistoryDialog\" timestamp=\"1618692662477\">\r\n      <screen x=\"-1920\" y=\"87\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"-1828\" y=\"179\" width=\"1736\" height=\"866\" key=\"com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618692662477\" />\r\n    <state x=\"92\" y=\"92\" width=\"1736\" height=\"866\" key=\"com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050\" timestamp=\"1618630284289\" />\r\n    <state x=\"769\" y=\"439\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1618629019704\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"769\" y=\"439\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050\" timestamp=\"1618629019704\" />\r\n    <state x=\"616\" y=\"243\" key=\"run.anything.popup\" timestamp=\"1618722874426\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"616\" y=\"243\" key=\"run.anything.popup/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050\" timestamp=\"1618722874426\" />\r\n    <state x=\"616\" y=\"243\" key=\"run.anything.popup/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050\" timestamp=\"1618626337007\" />\r\n    <state x=\"623\" y=\"227\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1618631839938\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"623\" y=\"227\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050\" timestamp=\"1618631839938\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 7e4d68090d07541ef151cb06b6ff3981ba5e007b)
+-+++ b/.idea/workspace.xml	(date 1618868982986)
+-@@ -1,25 +1,9 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+--  <component name="BranchesTreeState">
+--    <expand>
+--      <path>
+--        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--      </path>
+--      <path>
+--        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--      </path>
+--      <path>
+--        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+--        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+--      </path>
+--    </expand>
+--    <select />
+--  </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="Use Page2Test.js">
+-+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : restructure of how backend database works">
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/src/components/Page2Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
+-     </list>
+-@@ -44,19 +28,15 @@
+-     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-   </component>
+-   <component name="ProjectId" id="1qzmc8BHSvLS8MM6gsLYII7g9C0" />
+--  <component name="ProjectLevelVcsManager">
+--    <ConfirmationsSetting value="2" id="Add" />
+--  </component>
+-   <component name="ProjectViewState">
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+-   <component name="PropertiesComponent">
+--    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+-     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+--    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+-+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-     <property name="WebServerToolWindowFactoryState" value="false" />
+-     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+-     <property name="nodejs_package_manager_path" value="npm" />
+-@@ -90,10 +70,7 @@
+-       </list>
+-     </recent_temporary>
+-   </component>
+--  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+--  <component name="SvnConfiguration">
+--    <configuration />
+--  </component>
+-+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-   <component name="TaskManager">
+-     <task active="true" id="Default" summary="Default task">
+-       <changelist id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="" />
+-@@ -104,9 +81,7 @@
+-       <workItem from="1618090870741" duration="8492000" />
+-       <workItem from="1618159139101" duration="5822000" />
+-       <workItem from="1618257706146" duration="5996000" />
+--      <workItem from="1618461997560" duration="26293000" />
+--      <workItem from="1618721664680" duration="9334000" />
+--      <workItem from="1618851098735" duration="5387000" />
+-+      <workItem from="1618863041410" duration="233000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="initial: commit">
+-       <created>1618094165885</created>
+-@@ -136,18 +111,11 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1618162537272</updated>
+-     </task>
+--    <task id="LOCAL-00005" summary="Use Page2Test.js">
+--      <created>1618724382936</created>
+--      <option name="number" value="00005" />
+--      <option name="presentableId" value="LOCAL-00005" />
+--      <option name="project" value="LOCAL" />
+--      <updated>1618724382936</updated>
+--    </task>
+--    <option name="localTasksCounter" value="6" />
+-+    <option name="localTasksCounter" value="5" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+--    <option name="version" value="2" />
+-+    <option name="version" value="3" />
+-   </component>
+-   <component name="Vcs.Log.Tabs.Properties">
+-     <option name="TAB_STATES">
+-@@ -162,60 +130,10 @@
+-     <option name="oldMeFiltersMigrated" value="true" />
+-   </component>
+-   <component name="VcsManagerConfiguration">
+--    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+-     <MESSAGE value="initial: commit" />
+-     <MESSAGE value="implementation : database connection" />
+-     <MESSAGE value="refactor : moved around files" />
+-     <MESSAGE value="implemented : added add tasks and task list" />
+--    <MESSAGE value="Use Page2Test.js" />
+--    <option name="LAST_COMMIT_MESSAGE" value="Use Page2Test.js" />
+--  </component>
+--  <component name="WindowStateProjectService">
+--    <state x="718" y="327" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618632306898">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="718" y="327" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050" timestamp="1618632306898" />
+--    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1618449674302">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="740" y="275" key="FileChooserDialogImpl/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618449674302" />
+--    <state width="1882" height="278" key="GridCell.Tab.0.bottom" timestamp="1618721592894">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state width="1882" height="278" key="GridCell.Tab.0.bottom/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618721592894" />
+--    <state width="1882" height="278" key="GridCell.Tab.0.center" timestamp="1618721592893">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state width="1882" height="278" key="GridCell.Tab.0.center/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618721592893" />
+--    <state width="1882" height="278" key="GridCell.Tab.0.left" timestamp="1618721592893">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state width="1882" height="278" key="GridCell.Tab.0.left/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618721592893" />
+--    <state width="1882" height="278" key="GridCell.Tab.0.right" timestamp="1618721592894">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state width="1882" height="278" key="GridCell.Tab.0.right/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618721592894" />
+--    <state x="0" y="0" key="Vcs.Push.Dialog.v2" timestamp="1618724422947">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="0" y="0" key="Vcs.Push.Dialog.v2/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618724422947" />
+--    <state x="-1828" y="179" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1618692662477">
+--      <screen x="-1920" y="87" width="1920" height="1050" />
+--    </state>
+--    <state x="-1828" y="179" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618692662477" />
+--    <state x="92" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050" timestamp="1618630284289" />
+--    <state x="769" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618629019704">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="769" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050" timestamp="1618629019704" />
+--    <state x="616" y="243" key="run.anything.popup" timestamp="1618722874426">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="616" y="243" key="run.anything.popup/-1920.87.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1618722874426" />
+--    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050" timestamp="1618626337007" />
+--    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1618631839938">
+--      <screen x="0" y="0" width="1920" height="1050" />
+--    </state>
+--    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/-1920.87.1920.1050@0.0.1920.1050" timestamp="1618631839938" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="implemented : added add tasks and task list" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,160 +0,0 @@
+-Index: src/components/Kanban.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from \"react\";\r\nimport { DragDropContext, DropTarget, DragSource } from \"react-dnd\";\r\nimport HTML5Backend from \"react-dnd-html5-backend\";\r\nimport update from \"immutability-helper\";\r\nimport axios from 'axios';\r\n\r\nconst channels = [ \"new\", \"ip\", \"review\", \"done\"];\r\nconst labelsMap = {\r\n    new: \"To Do\",\r\n    ip: \"In Progress\",\r\n    review: \"Review\",\r\n    done: \"Done\"\r\n};\r\n\r\nconst classes = {\r\n    board: {\r\n        display: \"flex\",\r\n\r\n        width: \"90vw\",\r\n        fontFamily: 'Arial, \"Helvetica Neue\", sans-serif'\r\n    },\r\n    column: {\r\n        minWidth: 200,\r\n        width: \"18vw\",\r\n        height: \"80vh\",\r\n        margin: \"0 auto\",\r\n        backgroundColor: \"#4950a0\"\r\n    },\r\n    columnHead: {\r\n        textAlign: \"center\",\r\n        padding: 10,\r\n        fontSize: \"1.2em\",\r\n        backgroundColor: \"#787a98\"\r\n    },\r\n    item: {\r\n        padding: 10,\r\n        margin: 10,\r\n        fontSize: \"0.8em\",\r\n        cursor: \"pointer\",\r\n        backgroundColor: \"white\"\r\n    }\r\n};\r\n\r\nclass Kanban extends React.Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            tasks: [],\r\n            errorMessage: ''\r\n        };\r\n    }\r\n    componentDidMount(){\r\n        this.getDataBase();\r\n    }\r\n    getDataBase() {\r\n        axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')\r\n            .then(response => {\r\n                console.log(response.data);\r\n                this.setState({tasks: response.data});\r\n                console.log(this.state);\r\n            }).catch(error => {\r\n            console.log(error);\r\n            this.setState({errorMessage: error.message});\r\n        });\r\n    }\r\n    update = (id, status) => {\r\n        const { tasks } = this.state;\r\n        const task = tasks.find(task => task._id === id);\r\n        task.status = status;\r\n        const taskIndex = tasks.indexOf(task);\r\n        const newTasks = update(tasks, {\r\n            [taskIndex]: { $set: task }\r\n        });\r\n        this.setState({ tasks: newTasks });\r\n    };\r\n\r\n    render() {\r\n        const { tasks } = this.state;\r\n        return (\r\n            <main>\r\n                <h2 > Task Board </h2>\r\n                <section style={classes.board}>\r\n                    {channels.map(channel => (\r\n                        <KanbanColumn status={channel}>\r\n                            <div style={classes.column}>\r\n                                <div style={classes.columnHead}>{labelsMap[channel]}</div>\r\n                                <div>\r\n                                    {tasks\r\n                                        .filter(item => item.status === channel)\r\n                                        .map(item => (\r\n                                            <KanbanItem id={item._id} onDrop={this.update}>\r\n                                                <div style={classes.item}>{item.title}\r\n                                                     <p> Type :\r\n                                                    {item.type}\r\n                                                     </p>\r\n                                                </div>\r\n\r\n\r\n                                            </KanbanItem>\r\n                                        ))}\r\n                                </div>\r\n                            </div>\r\n                        </KanbanColumn>\r\n                    ))}\r\n                </section>\r\n            </main>\r\n        );\r\n    }\r\n}\r\n\r\nexport default DragDropContext(HTML5Backend)(Kanban);\r\n\r\n// Column\r\n\r\nconst boxTarget = {\r\n    drop(props) {\r\n        return { name: props.status };\r\n    }\r\n};\r\n\r\nclass KanbanColumn extends React.Component {\r\n    render() {\r\n        return this.props.connectDropTarget(<div>{this.props.children}</div>);\r\n    }\r\n}\r\n\r\nKanbanColumn = DropTarget(\"kanbanItem\", boxTarget, (connect, monitor) => ({\r\n    connectDropTarget: connect.dropTarget(),\r\n    isOver: monitor.isOver(),\r\n    canDrop: monitor.canDrop()\r\n}))(KanbanColumn);\r\n\r\n// Item\r\n\r\nconst boxSource = {\r\n    beginDrag(props) {\r\n        return {\r\n            name: props.id\r\n        };\r\n    },\r\n\r\n    endDrag(props, monitor) {\r\n        const item = monitor.getItem();\r\n        const dropResult = monitor.getDropResult();\r\n        if (dropResult) {\r\n            props.onDrop(monitor.getItem().name, dropResult.name);\r\n        }\r\n    }\r\n};\r\n\r\nclass KanbanItem extends React.Component {\r\n    render() {\r\n        return this.props.connectDragSource(<div>{this.props.children}</div>);\r\n    }\r\n}\r\n\r\nKanbanItem = DragSource(\"kanbanItem\", boxSource, (connect, monitor) => ({\r\n    connectDragSource: connect.dragSource(),\r\n    isDragging: monitor.isDragging()\r\n}))(KanbanItem);\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/Kanban.js b/src/components/Kanban.js
+---- a/src/components/Kanban.js	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/src/components/Kanban.js	(date 1618512519563)
+-@@ -3,6 +3,7 @@
+- import HTML5Backend from "react-dnd-html5-backend";
+- import update from "immutability-helper";
+- import axios from 'axios';
+-+import AddTask from "./AddTask";
+- 
+- const channels = [ "new", "ip", "review", "done"];
+- const labelsMap = {
+-@@ -63,6 +64,19 @@
+-             this.setState({errorMessage: error.message});
+-         });
+-     }
+-+
+-+    onAddTask = (taskTitle, taskType) => {
+-+
+-+        let tasks = this.state.tasks;
+-+        tasks.push({
+-+            title: taskTitle,
+-+            id: this.state.tasks.length +1,
+-+            type: taskType,
+-+            column: 'todo'
+-+
+-+        });
+-+
+-+}
+-     update = (id, status) => {
+-         const { tasks } = this.state;
+-         const task = tasks.find(task => task._id === id);
+-Index: src/components/App.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from 'react';\r\n\r\nimport PageTabs from './PageTabs';\r\nimport Page2 from './Page2';\r\nimport Page3 from './Page3';\r\nimport Kanban from \"./Kanban\";\r\n\r\nclass App extends React.Component {\r\n  state = {\r\n    view: 'kanban'\r\n  }\r\n  \r\n  onViewChange(view) {\r\n    this.setState({ view });\r\n  }\r\n\r\n  wrapPage(jsx) {\r\n    const { view } = this.state;\r\n    return (\r\n      <div className=\"container\">\r\n        <PageTabs currentView={view}\r\n                  onViewChange={this.onViewChange.bind(this)}/>\r\n        {jsx}\r\n      </div>\r\n    );\r\n  }\r\n\r\n  render() {\r\n    const { view } = this.state;\r\n\r\n    switch (view) {\r\n      case 'kanban':\r\n        return (this.wrapPage(\r\n          <Kanban />\r\n        ));\r\n      case 'page2':\r\n        return (this.wrapPage(\r\n          <Page2 />\r\n        ));\r\n      case 'page3':\r\n        return (this.wrapPage(\r\n          <Page3 />\r\n        ));\r\n      default:\r\n        return (this.wrapPage(\r\n          <h2>Invalid Tab, choose another</h2>\r\n        ));\r\n    }\r\n\r\n  }\r\n}\r\n\r\nexport default App;
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/App.js b/src/components/App.js
+---- a/src/components/App.js	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/src/components/App.js	(date 1618511071843)
+-@@ -2,8 +2,9 @@
+- 
+- import PageTabs from './PageTabs';
+- import Page2 from './Page2';
+--import Page3 from './Page3';
+-+import Page3 from './AddTask';
+- import Kanban from "./Kanban";
+-+import AddTask from "./AddTask";
+- 
+- class App extends React.Component {
+-   state = {
+-@@ -37,9 +38,9 @@
+-         return (this.wrapPage(
+-           <Page2 />
+-         ));
+--      case 'page3':
+-+      case 'addtask':
+-         return (this.wrapPage(
+--          <Page3 />
+-+          <AddTask />
+-         ));
+-       default:
+-         return (this.wrapPage(
+-Index: src/components/Page3.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/Page3.js b/src/components/AddTask.js
+-rename from src/components/Page3.js
+-rename to src/components/AddTask.js
+---- a/src/components/Page3.js	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/src/components/AddTask.js	(date 1618760473601)
+-@@ -2,10 +2,10 @@
+- 
+- 
+- 
+-+class AddTask extends React.Component {
+-+     state = { newTask: ""}
+- 
+--class Page3 extends React.Component {
+--
+--   addNewTask (newTask) {
+-+  addNewTask = (newTask)=> {
+-        console.log(newTask);
+- 
+-    }
+-@@ -19,7 +19,12 @@
+-         }
+-         this.addNewTask(newTask);
+-         e.preventDefault();
+-+
+-+        this.props.onSubmit(this.state.newTask)
+-+        this.setState({newTask: ""})
+-+
+-     }
+-+
+-     render(){
+- 
+-        return (
+-@@ -51,5 +56,5 @@
+- }
+- 
+- 
+--export default Page3;
+-+export default AddTask;
+- 
+-Index: src/components/PageTabs.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from 'react';\r\n\r\nimport './PageTabs.css';\r\n\r\nclass PageTabs extends React.Component {\r\n\r\n  isActiveTab(tabName) {\r\n    return (tabName === this.props.currentView) ? 'nav-link active' : 'nav-link';\r\n  }\r\n\r\n  onTabClick(event, tabName) {\r\n    event.preventDefault();\r\n    this.props.onViewChange(tabName);\r\n  }\r\n\r\n  render () {\r\n    return (\r\n      <ul className='nav page-tabs'>\r\n        <li className='nav-item'>\r\n          <a className={this.isActiveTab('kanban')}\r\n             onClick={(e) => this.onTabClick(e, 'kanban')}>\r\n            Grid View\r\n          </a>\r\n        </li>\r\n        <li className='nav-item'>\r\n          <a className={this.isActiveTab('page2')}\r\n             onClick={(e) => this.onTabClick(e, 'page2')}>\r\n            List View\r\n          </a>\r\n        </li>\r\n        <li className='nav-item'>\r\n          <a className={this.isActiveTab('page3')}\r\n             onClick={(e) => this.onTabClick(e, 'page3')}>\r\n            Add Task\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    )\r\n  }\r\n\r\n};\r\n\r\nexport default PageTabs;
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/PageTabs.js b/src/components/PageTabs.js
+---- a/src/components/PageTabs.js	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/src/components/PageTabs.js	(date 1618510989309)
+-@@ -29,8 +29,8 @@
+-           </a>
+-         </li>
+-         <li className='nav-item'>
+--          <a className={this.isActiveTab('page3')}
+--             onClick={(e) => this.onTabClick(e, 'page3')}>
+-+          <a className={this.isActiveTab('addtask')}
+-+             onClick={(e) => this.onTabClick(e, 'addtask')}>
+-             Add Task
+-           </a>
+-         </li>
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"implemented : restructure of how backend database works\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Kanban.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Kanban.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implemented : added add tasks and task list\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/.idea/workspace.xml	(date 1618511667437)
+-@@ -1,9 +1,12 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : restructure of how backend database works">
+-+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment=".">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/components/Page3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/components/PageTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageTabs.js" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]" date="1618865609740" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/19/2021 4:53 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM__Default_Changelist_.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]" date="1618858338048" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/19/2021 2:51 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM_[Default_Changelist]/shelved.patch	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,151 +0,0 @@
+-Index: src/components/AddTask.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from 'react';\r\n\r\n\r\n\r\nclass AddTask extends React.Component {\r\n     state = { newTask: \"\"}\r\n\r\n  addNewTask = (newTask)=> {\r\n       console.log(newTask);\r\n\r\n   }\r\n// we ned to add this to the database\r\n    // probably I can do it\r\n\r\n    onSubmit = (e) => {\r\n        const newTask ={\r\n            title : this.refs.title.value,\r\n            type : this.refs.type.value\r\n        }\r\n        this.addNewTask(newTask);\r\n        e.preventDefault();\r\n\r\n        this.props.onSubmit(this.state.newTask)\r\n        this.setState({newTask: \"\"})\r\n\r\n    }\r\n\r\n    render(){\r\n\r\n       return (\r\n\r\n           <div>\r\n               <form className=\"task-input form-group\" onSubmit={this.onSubmit.bind(this)}>\r\n                   <h2>Add Task</h2>\r\n                   <label htmlFor=\"title\">Enter New Task</label>\r\n                   <input type=\"text\" className=\"form-control\"\r\n                          name=\"title\"\r\n                          ref=\"title\"\r\n                          />\r\n\r\n                   <label htmlFor=\"type\">Type</label>\r\n                   <select className=\"browser-default custom-select\" name=\"type\" ref=\"type\">\r\n                       <option>Choose your option</option>\r\n                       <option value=\"task\">Task</option>\r\n                       <option value=\"debug\">Debug</option>\r\n                       <option value=\"feature\">Feature</option>\r\n                   </select>\r\n                   <input type=\"submit\" value=\"Add Task\" className=\"btn btn-primary\"/>\r\n               </form>\r\n\r\n           </div>\r\n       );\r\n\r\n   }\r\n\r\n}\r\n\r\n\r\nexport default AddTask;\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/AddTask.js b/src/components/AddTask.js
+---- a/src/components/AddTask.js	(revision 57260efea3832521823b42c0193f1c8f300b4b6a)
+-+++ b/src/components/AddTask.js	(date 1618864364098)
+-@@ -5,23 +5,24 @@
+- class AddTask extends React.Component {
+-      state = { newTask: ""}
+- 
+--  addNewTask = (newTask)=> {
+--       console.log(newTask);
+--
+--   }
+- // we ned to add this to the database
+-     // probably I can do it
+-+    addNewTask (newTask) {
+-+        console.log(newTask);
+- 
+--    onSubmit = (e) => {
+-+    }
+-+    onFormSubmit = (e) => {
+-         const newTask ={
+-             title : this.refs.title.value,
+-             type : this.refs.type.value
+-+
+-         }
+--        this.addNewTask(newTask);
+-+
+-+
+-         e.preventDefault();
+- 
+--        this.props.onSubmit(this.state.newTask)
+--        this.setState({newTask: ""})
+-+        this.props.onSubmit(this.state.addNewTask(newTask))
+-+
+- 
+-     }
+- 
+-@@ -30,16 +31,21 @@
+-        return (
+- 
+-            <div>
+--               <form className="task-input form-group" onSubmit={this.onSubmit.bind(this)}>
+-+               <form className="task-input form-group" onSubmit={this.onFormSubmit}>
+-                    <h2>Add Task</h2>
+-                    <label htmlFor="title">Enter New Task</label>
+-                    <input type="text" className="form-control"
+-                           name="title"
+-                           ref="title"
+-+
+-                           />
+- 
+-                    <label htmlFor="type">Type</label>
+--                   <select className="browser-default custom-select" name="type" ref="type">
+-+                   <select className="browser-default custom-select"
+-+                           name="type"
+-+
+-+                           ref="type"
+-+                           >
+-                        <option>Choose your option</option>
+-                        <option value="task">Task</option>
+-                        <option value="debug">Debug</option>
+-Index: src/components/App.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from 'react';\r\n\r\nimport PageTabs from './PageTabs';\r\nimport Page2 from './Page2Test';\r\nimport Page3 from './AddTask';\r\nimport Kanban from \"./Kanban\";\r\nimport AddTask from \"./AddTask\";\r\n\r\nclass App extends React.Component {\r\n  state = {\r\n    view: 'kanban'\r\n  }\r\n  \r\n  onViewChange(view) {\r\n    this.setState({ view });\r\n  }\r\n\r\n  wrapPage(jsx) {\r\n    const { view } = this.state;\r\n    return (\r\n      <div className=\"container\">\r\n        <PageTabs currentView={view}\r\n                  onViewChange={this.onViewChange.bind(this)}/>\r\n        {jsx}\r\n      </div>\r\n    );\r\n  }\r\n\r\n  render() {\r\n    const { view } = this.state;\r\n\r\n    switch (view) {\r\n      case 'kanban':\r\n        return (this.wrapPage(\r\n          <Kanban />\r\n        ));\r\n      case 'page2':\r\n        return (this.wrapPage(\r\n          <Page2 />\r\n        ));\r\n      case 'addtask':\r\n        return (this.wrapPage(\r\n          <AddTask />\r\n        ));\r\n      default:\r\n        return (this.wrapPage(\r\n          <h2>Invalid Tab, choose another</h2>\r\n        ));\r\n    }\r\n\r\n  }\r\n}\r\n\r\nexport default App;
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/App.js b/src/components/App.js
+---- a/src/components/App.js	(revision 57260efea3832521823b42c0193f1c8f300b4b6a)
+-+++ b/src/components/App.js	(date 1618863152297)
+-@@ -2,7 +2,7 @@
+- 
+- import PageTabs from './PageTabs';
+- import Page2 from './Page2Test';
+--import Page3 from './AddTask';
+-+
+- import Kanban from "./Kanban";
+- import AddTask from "./AddTask";
+- 
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"implemented : restructure of how backend database works\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/App.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Kanban.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Kanban.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Page3.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/AddTask.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/PageTabs.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/PageTabs.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implemented : added add tasks and task list\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 57260efea3832521823b42c0193f1c8f300b4b6a)
+-+++ b/.idea/workspace.xml	(date 1618863385226)
+-@@ -1,12 +1,10 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : restructure of how backend database works">
+-+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="adding task">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/components/AddTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/components/Page3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/components/PageTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageTabs.js" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -111,7 +109,28 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1618162537272</updated>
+-     </task>
+--    <option name="localTasksCounter" value="5" />
+-+    <task id="LOCAL-00005" summary="adding task">
+-+      <created>1618762575523</created>
+-+      <option name="number" value="00005" />
+-+      <option name="presentableId" value="LOCAL-00005" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1618762575523</updated>
+-+    </task>
+-+    <task id="LOCAL-00006" summary="adding task">
+-+      <created>1618762583665</created>
+-+      <option name="number" value="00006" />
+-+      <option name="presentableId" value="LOCAL-00006" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1618762583665</updated>
+-+    </task>
+-+    <task id="LOCAL-00007" summary="adding task">
+-+      <created>1618762594329</created>
+-+      <option name="number" value="00007" />
+-+      <option name="presentableId" value="LOCAL-00007" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1618762594329</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="8" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -134,6 +153,7 @@
+-     <MESSAGE value="implementation : database connection" />
+-     <MESSAGE value="refactor : moved around files" />
+-     <MESSAGE value="implemented : added add tasks and task list" />
+--    <option name="LAST_COMMIT_MESSAGE" value="implemented : added add tasks and task list" />
+-+    <MESSAGE value="adding task" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="adding task" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_6_25_PM_[Default_Changelist]/shelved.patch	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,230 +0,0 @@
+-Index: src/components/Page2Test.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>import React from \"react\";\r\nimport update from \"immutability-helper\";\r\nimport axios from 'axios';\r\n\r\nlet newList = [];\r\nlet finalList = [];\r\nfunction taskSetup(tasks, index){\r\n\r\n    finalList.push(tasks)\r\n}\r\nconst useSortableData = (items, config = null) => {\r\n    const [sortConfig, setSortConfig] = React.useState(config);\r\n\r\n    const sortedItems = React.useMemo(() => {\r\n        let sortableItems = [...items];\r\n        finalList = [];\r\n\r\n        newList.forEach(taskSetup)\r\n\r\n        for(var singleTask of finalList){\r\n                finalList.sort((a, b) => {\r\n                    if (a[sortConfig.key] < b[sortConfig.key]) {\r\n                        return sortConfig.direction === 'ascending' ? -1 : 1;\r\n                    }\r\n                    if (a[sortConfig.key] > b[sortConfig.key]) {\r\n                        return sortConfig.direction === 'ascending' ? 1 : -1;\r\n                    }\r\n                    sortableItems = finalList;\r\n                });\r\n\r\n        }\r\n\r\n        return sortableItems;\r\n\r\n\r\n    }, [items, sortConfig]);\r\n\r\n    const requestSort = (key) => {\r\n        let direction = 'ascending';\r\n        if (\r\n            sortConfig &&\r\n            sortConfig.key === key &&\r\n            sortConfig.direction === 'ascending'\r\n        ) {\r\n\r\n            direction = 'descending';\r\n        }\r\n        setSortConfig({ key, direction });\r\n    };\r\n\r\n    return { items: sortedItems, requestSort, sortConfig };\r\n};\r\n\r\nconst ProductTable = (props) => {\r\n    const { items, requestSort, sortConfig } = useSortableData(props.tasks);\r\n        newList = [];\r\n\r\n    try{\r\n        for(var task of items){\r\n            for(var singleTask of task){\r\n                newList.push(singleTask)\r\n            }\r\n        }\r\n    }catch{\r\n        for(var item of items){\r\n            newList.push(item);\r\n        }\r\n\r\n    }\r\n\r\n\r\n    const getClassNamesFor = (name) => {\r\n        if (!sortConfig) {\r\n            return;\r\n        }\r\n        return sortConfig.key === name ? sortConfig.direction : undefined;\r\n    };\r\n\r\n    return (\r\n        <table>\r\n            <caption>Products</caption>\r\n            <thead>\r\n            <tr>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('_id')}\r\n                        className={getClassNamesFor('_id')}\r\n                    >\r\n                        ID\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('title')}\r\n                        className={getClassNamesFor('title')}\r\n                    >\r\n                        Title\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('type')}\r\n                        className={getClassNamesFor('type')}\r\n                    >\r\n                        Type\r\n                    </button>\r\n                </th>\r\n                <th>\r\n                    <button\r\n                        type=\"button\"\r\n                        onClick={() => requestSort('status')}\r\n                        className={getClassNamesFor('status')}\r\n                    >\r\n                        Status\r\n                    </button>\r\n                </th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            {\r\n                finalList.map((task, index ) => (\r\n                    <tr>\r\n                        <td>{task._id}</td>\r\n                        <td>{task.title}</td>\r\n                        <td>{task.type}</td>\r\n                        <td>{task.status}</td>\r\n                    </tr>\r\n                ))\r\n            }\r\n\r\n            </tbody>\r\n        </table>\r\n    );\r\n};\r\n\r\nexport default class Page2Test extends React.Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            tasks: [],\r\n            errorMessage: ''\r\n        };\r\n    }\r\n\r\n    componentDidMount(){\r\n        this.getDataBase();\r\n    }\r\n\r\n    getDataBase() {\r\n        axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')\r\n            .then(response => {\r\n                this.setState({tasks: response.data});\r\n            }).catch(error => {\r\n            this.setState({errorMessage: error.message});\r\n        });\r\n    }\r\n\r\n    update = (id, status) => {\r\n        const { tasks } = this.state;\r\n        const task = tasks.find(task => task._id === id);\r\n        task.status = status;\r\n        const taskIndex = tasks.indexOf(task);\r\n        const newTasks = update(tasks, {\r\n            [taskIndex]: { $set: task }\r\n        });\r\n        this.setState({ tasks: newTasks });\r\n    };\r\n    render(){\r\n        return (\r\n            <div className=\"App\">\r\n                <ProductTable\r\n                    tasks={[\r\n                        this.state.tasks\r\n                    ]}\r\n                />\r\n            </div>\r\n        );\r\n    }\r\n\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/components/Page2Test.js b/src/components/Page2Test.js
+---- a/src/components/Page2Test.js	(revision 4937e9ca6486ab510dccf00a231612fde9b9944f)
+-+++ b/src/components/Page2Test.js	(date 1618868995866)
+-@@ -5,7 +5,7 @@
+- let newList = [];
+- let finalList = [];
+- function taskSetup(tasks, index){
+--
+-+    console.log(finalList)
+-     finalList.push(tasks)
+- }
+- const useSortableData = (items, config = null) => {
+-@@ -14,10 +14,11 @@
+-     const sortedItems = React.useMemo(() => {
+-         let sortableItems = [...items];
+-         finalList = [];
+--
+-         newList.forEach(taskSetup)
+--
+-+        console.log(newList)
+-         for(var singleTask of finalList){
+-+            console.log(finalList)
+-+            if (sortConfig !== null) {
+-                 finalList.sort((a, b) => {
+-                     if (a[sortConfig.key] < b[sortConfig.key]) {
+-                         return sortConfig.direction === 'ascending' ? -1 : 1;
+-@@ -27,7 +28,7 @@
+-                     }
+-                     sortableItems = finalList;
+-                 });
+--
+-+            }
+-         }
+- 
+-         return sortableItems;
+-@@ -42,7 +43,7 @@
+-             sortConfig.key === key &&
+-             sortConfig.direction === 'ascending'
+-         ) {
+--
+-+            console.log(sortConfig.key)
+-             direction = 'descending';
+-         }
+-         setSortConfig({ key, direction });
+-@@ -53,21 +54,18 @@
+- 
+- const ProductTable = (props) => {
+-     const { items, requestSort, sortConfig } = useSortableData(props.tasks);
+--        newList = [];
+- 
+-     try{
+-+        newList = [];
+-         for(var task of items){
+-             for(var singleTask of task){
+-                 newList.push(singleTask)
+-+                console.log(newList)
+-             }
+-         }
+-     }catch{
+--        for(var item of items){
+--            newList.push(item);
+-+            console.log(newList)
+-         }
+--
+--    }
+--
+- 
+-     const getClassNamesFor = (name) => {
+-         if (!sortConfig) {
+-@@ -75,7 +73,7 @@
+-         }
+-         return sortConfig.key === name ? sortConfig.direction : undefined;
+-     };
+--
+-+    console.log(finalList)
+-     return (
+-         <table>
+-             <caption>Products</caption>
+-@@ -152,8 +150,11 @@
+-     getDataBase() {
+-         axios.get('https://my-json-server.typicode.com/DenisCodes/database/tasks')
+-             .then(response => {
+-+                console.log(response.data);
+-                 this.setState({tasks: response.data});
+-+                console.log(this.state);
+-             }).catch(error => {
+-+            console.log(error);
+-             this.setState({errorMessage: error.message});
+-         });
+-     }
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"adding task\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/AddTask.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/AddTask.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"adding task\">\r\n      <created>1618865668183</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618865668183</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"adding task\">\r\n      <created>1618865679828</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618865679828</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <MESSAGE value=\"adding task\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"adding task\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 4937e9ca6486ab510dccf00a231612fde9b9944f)
+-+++ b/.idea/workspace.xml	(date 1618869573414)
+-@@ -1,9 +1,30 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-+  <component name="BranchesTreeState">
+-+    <expand>
+-+      <path>
+-+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+      </path>
+-+      <path>
+-+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+      </path>
+-+      <path>
+-+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+-+      </path>
+-+    </expand>
+-+    <select />
+-+  </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="adding task">
+-+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="Use Page2Test.js">
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_4_53_PM__Default_Changelist_.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/components/AddTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/src/components/Page2Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -26,15 +47,19 @@
+-     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-   </component>
+-   <component name="ProjectId" id="1qzmc8BHSvLS8MM6gsLYII7g9C0" />
+-+  <component name="ProjectLevelVcsManager">
+-+    <ConfirmationsSetting value="2" id="Add" />
+-+  </component>
+-   <component name="ProjectViewState">
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+-   <component name="PropertiesComponent">
+-+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+-     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+--    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+-     <property name="WebServerToolWindowFactoryState" value="false" />
+-     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+-     <property name="nodejs_package_manager_path" value="npm" />
+-@@ -68,7 +93,10 @@
+-       </list>
+-     </recent_temporary>
+-   </component>
+--  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+-+  <component name="SvnConfiguration">
+-+    <configuration />
+-+  </component>
+-   <component name="TaskManager">
+-     <task active="true" id="Default" summary="Default task">
+-       <changelist id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="" />
+-@@ -79,6 +107,9 @@
+-       <workItem from="1618090870741" duration="8492000" />
+-       <workItem from="1618159139101" duration="5822000" />
+-       <workItem from="1618257706146" duration="5996000" />
+-+      <workItem from="1618461997560" duration="26293000" />
+-+      <workItem from="1618721664680" duration="9334000" />
+-+      <workItem from="1618851098735" duration="5387000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="initial: commit">
+-       <created>1618094165885</created>
+-@@ -108,25 +139,18 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1618162537272</updated>
+-     </task>
+--    <task id="LOCAL-00005" summary="adding task">
+--      <created>1618865668183</created>
+-+    <task id="LOCAL-00005" summary="Use Page2Test.js">
+-+      <created>1618724382936</created>
+-       <option name="number" value="00005" />
+-       <option name="presentableId" value="LOCAL-00005" />
+-       <option name="project" value="LOCAL" />
+--      <updated>1618865668183</updated>
+-+      <updated>1618724382936</updated>
+-     </task>
+--    <task id="LOCAL-00006" summary="adding task">
+--      <created>1618865679828</created>
+--      <option name="number" value="00006" />
+--      <option name="presentableId" value="LOCAL-00006" />
+--      <option name="project" value="LOCAL" />
+--      <updated>1618865679828</updated>
+--    </task>
+--    <option name="localTasksCounter" value="7" />
+-+    <option name="localTasksCounter" value="6" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+--    <option name="version" value="3" />
+-+    <option name="version" value="2" />
+-   </component>
+-   <component name="Vcs.Log.Tabs.Properties">
+-     <option name="TAB_STATES">
+-@@ -141,11 +165,12 @@
+-     <option name="oldMeFiltersMigrated" value="true" />
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+-     <MESSAGE value="initial: commit" />
+-     <MESSAGE value="implementation : database connection" />
+-     <MESSAGE value="refactor : moved around files" />
+-     <MESSAGE value="implemented : added add tasks and task list" />
+--    <MESSAGE value="adding task" />
+--    <option name="LAST_COMMIT_MESSAGE" value="adding task" />
+-+    <MESSAGE value="Use Page2Test.js" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Use Page2Test.js" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,69 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"implemented : restructure of how backend database works\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Kanban.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Kanban.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implemented : added add tasks and task list\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision cbc4429ae607c69969c83eff8dc34c4c3f4ad43f)
+-+++ b/.idea/workspace.xml	(date 1618858238661)
+-@@ -1,9 +1,8 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+-   <component name="ChangeListManager">
+--    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : restructure of how backend database works">
+-+    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="implemented : array data is now drawn from api">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -36,7 +35,7 @@
+-     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-     <property name="WebServerToolWindowFactoryState" value="false" />
+--    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+-+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BasicWebPack" />
+-     <property name="nodejs_package_manager_path" value="npm" />
+-     <property name="vue.rearranger.settings.migration" value="true" />
+-   </component>
+-@@ -78,7 +77,11 @@
+-       <updated>1618090869167</updated>
+-       <workItem from="1618090870741" duration="8492000" />
+-       <workItem from="1618159139101" duration="5822000" />
+--      <workItem from="1618257706146" duration="5996000" />
+-+      <workItem from="1618257706146" duration="6944000" />
+-+      <workItem from="1618275484501" duration="580000" />
+-+      <workItem from="1618346715376" duration="468000" />
+-+      <workItem from="1618436384188" duration="682000" />
+-+      <workItem from="1618857148446" duration="645000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="initial: commit">
+-       <created>1618094165885</created>
+-@@ -108,7 +111,14 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1618162537272</updated>
+-     </task>
+--    <option name="localTasksCounter" value="5" />
+-+    <task id="LOCAL-00005" summary="implemented : array data is now drawn fro api">
+-+      <created>1618264419018</created>
+-+      <option name="number" value="00005" />
+-+      <option name="presentableId" value="LOCAL-00005" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1618264419018</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="6" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -131,6 +141,7 @@
+-     <MESSAGE value="implementation : database connection" />
+-     <MESSAGE value="refactor : moved around files" />
+-     <MESSAGE value="implemented : added add tasks and task list" />
+--    <option name="LAST_COMMIT_MESSAGE" value="implemented : added add tasks and task list" />
+-+    <MESSAGE value="implemented : array data is now drawn fro api" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="implemented : array data is now drawn fro api" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM__Default_Changelist_.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ /dev/null	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]" date="1618869000276" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_5_49_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 4/19/2021 5:49 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"fixed unkown error\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/Dbase.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/AddTask.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/AddTask.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Kanban.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Kanban.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Page2Test.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Page2Test.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/index.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/index.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1qzmc8BHSvLS8MM6gsLYII7g9C0\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../BasicWebPack\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\" />\r\n      <recent name=\"C:\\Users\\mandd\\WebstormProjects\\ReactConditionalRendering\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"62a70e15-0f55-474a-b4c7-4d4b8bc5f03e\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1618090869167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618090869167</updated>\r\n      <workItem from=\"1618090870741\" duration=\"8492000\" />\r\n      <workItem from=\"1618159139101\" duration=\"5822000\" />\r\n      <workItem from=\"1618257706146\" duration=\"5996000\" />\r\n      <workItem from=\"1618887236655\" duration=\"341000\" />\r\n      <workItem from=\"1618943850203\" duration=\"9000\" />\r\n      <workItem from=\"1618946026149\" duration=\"8364000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"initial: commit\">\r\n      <created>1618094165885</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618094165885</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"implementation : database connection\">\r\n      <created>1618100997795</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618100997795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"refactor : moved around files\">\r\n      <created>1618159595865</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618159595865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"implemented : added add tasks and task list\">\r\n      <created>1618162537272</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618162537272</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"adding task\">\r\n      <created>1618865668183</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618865668183</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"adding task\">\r\n      <created>1618865679828</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618865679828</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"fixed unkown error\">\r\n      <created>1618871425038</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618871425038</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"8\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"initial: commit\" />\r\n    <MESSAGE value=\"implementation : database connection\" />\r\n    <MESSAGE value=\"refactor : moved around files\" />\r\n    <MESSAGE value=\"implemented : added add tasks and task list\" />\r\n    <MESSAGE value=\"adding task\" />\r\n    <MESSAGE value=\"fixed unkown error\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fixed unkown error\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9338c7a3ff99066eb663a24a1ad1010d5f6967ac)
++++ b/.idea/workspace.xml	(date 1619562115396)
+@@ -1,15 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="fixed unkown error">
+-      <change afterPath="$PROJECT_DIR$/src/components/Dbase.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_13_2021_1_34_PM__Default_Changelist_.xml" beforeDir="false" />
++    <list default="true" id="62a70e15-0f55-474a-b4c7-4d4b8bc5f03e" name="Default Changelist" comment="fixed error with database retrieval">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_18_2021_12_08_PM__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_19_2021_2_51_PM__Default_Changelist_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/AddTask.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/Kanban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Kanban.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/Page2Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page2Test.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -91,6 +88,9 @@
+       <workItem from="1618887236655" duration="341000" />
+       <workItem from="1618943850203" duration="9000" />
+       <workItem from="1618946026149" duration="8364000" />
++      <workItem from="1618958143280" duration="127000" />
++      <workItem from="1619012549766" duration="631000" />
++      <workItem from="1619468909363" duration="1095000" />
+     </task>
+     <task id="LOCAL-00001" summary="initial: commit">
+       <created>1618094165885</created>
+@@ -141,7 +141,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1618871425038</updated>
+     </task>
+-    <option name="localTasksCounter" value="8" />
++    <task id="LOCAL-00008" summary="fixed error with database retrieval">
++      <created>1618958256518</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1618958256518</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -166,6 +173,7 @@
+     <MESSAGE value="implemented : added add tasks and task list" />
+     <MESSAGE value="adding task" />
+     <MESSAGE value="fixed unkown error" />
+-    <option name="LAST_COMMIT_MESSAGE" value="fixed unkown error" />
++    <MESSAGE value="fixed error with database retrieval" />
++    <option name="LAST_COMMIT_MESSAGE" value="fixed error with database retrieval" />
+   </component>
+ </project>
+\ No newline at end of file
