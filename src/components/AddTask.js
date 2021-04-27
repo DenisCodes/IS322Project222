@@ -20,9 +20,9 @@ class AddTask extends React.Component {
             title : this.refs.title.value,
             type : this.refs.type.value
         }
-        this.addNewTask(newTask);
+        //this.addNewTask(newTask);
         Dbase.addNewTask(newTask);
-        this.props.onSubmit(this.state.addNewTask(newTask));
+        //this.props.onSubmit(this.state.addNewTask(newTask));
         e.preventDefault();
 
     }
