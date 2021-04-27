@@ -91,7 +91,6 @@ class Kanban extends React.Component {
             this.setState({errorMessage: error.message});
         });
     }
-
     onAddTask = (taskTitle, taskType) => {
 
         let tasks = this.state.tasks;
@@ -118,7 +117,9 @@ class Kanban extends React.Component {
     render() {
         const { tasks } = this.state;
         return (
+
             <main>
+
                 <h2 > Task Board </h2>
                 <section style={classes.board}>
                     {channels.map(channel => (
